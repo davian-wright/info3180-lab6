@@ -21,7 +21,20 @@ const NewsList = {
   <h2>News</h2>
   <ul class="news__list">
     <li v-for="article in articles"
-  class="news__item">{{ article.title }}{{ article.description}}</li>
+  class="news__item">
+
+    <div class="card-group" >
+        <div class="card"  style="max-width: 18rem;">
+            <img class="card-img-top" :src="article.urlToImage" alt="article image">
+            <div class="card-body">
+                <h5 class="card-title">{{article.title}}</h5>
+                <p class="card-text">{{article.description}}</p>
+            </div>
+            <div class="card-footer text-muted d-flex"></div>
+        </div>
+    </div>
+
+  </li>
   </ul>
 </div>
 
@@ -39,7 +52,7 @@ search term here" />
 
         fetch('https://newsapi.org/v2/top-headlines?country=us', {
                 headers: {
-                    'Authorization': 'Bearer 78e7228b759d447580e65959da236459'
+                    'Authorization': 'Bearer <....>'
                 }
             })
             .then(function(response) {
@@ -64,7 +77,7 @@ search term here" />
             fetch('https://newsapi.org/v2/everything?q=' +
                     self.searchTerm + '&language=en', {
                         headers: {
-                            'Authorization': 'Bearer 78e7228b759d447580e65959da236459'
+                            'Authorization': 'Bearer <....>'
                         }
                     })
                 .then(function(response) {
@@ -109,14 +122,14 @@ app.component('app-header', {
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <router-link to="/" class="nav-link">Home</router-link>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">News</a>
-                </li>
-              </ul>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <router-link to="/" class="nav-link">Home</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/news" class="nav-link">News</router-link>
+                    </li>
+                </ul>
             </div>
           </nav>
       </header>    
